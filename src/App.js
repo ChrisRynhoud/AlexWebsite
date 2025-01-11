@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import HomePage from './components/HomePage';
 import Gallery from './components/Gallery';
@@ -10,7 +10,7 @@ import './App.css';
 
 function App() {
   return (
-    <Router basename="/AlexWebsite">
+    <Router>
       <div className="App">
         <Header />
         <Routes>

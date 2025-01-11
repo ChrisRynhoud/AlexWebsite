@@ -6,8 +6,10 @@
     <title>Page Not Found</title>
     <script type="text/javascript">
       // Redirect to the correct path
-      var redirectUrl = window.location.protocol + '//' + window.location.hostname + '/AlexWebsite' + window.location.pathname + window.location.search;
-      window.location.href = redirectUrl;
+      var pathname = window.location.pathname;
+      if (!pathname.includes("/AlexWebsite")) {
+        window.location.href = window.location.protocol + '//' + window.location.hostname + '/AlexWebsite' + pathname + window.location.search;
+      }
     </script>
   </head>
   <body>
