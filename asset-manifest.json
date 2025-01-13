@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/AlexWebsite/static/css/main.5b18cd4b.css",
-    "main.js": "/AlexWebsite/static/js/main.c3ec744c.js",
+    "main.css": "/AlexWebsite/static/css/main.288d36b2.css",
+    "main.js": "/AlexWebsite/static/js/main.182a19c3.js",
     "static/js/488.af104311.chunk.js": "/AlexWebsite/static/js/488.af104311.chunk.js",
-    "static/media/alex.jpg": "/AlexWebsite/static/media/alex.f09c4f42176b1ca3640a.jpg",
+    "static/media/resume-image.jpg": "/AlexWebsite/static/media/resume-image.a9cd21b253d08968a787.jpg",
+    "static/media/home-image.jpg": "/AlexWebsite/static/media/home-image.f09c4f42176b1ca3640a.jpg",
     "index.html": "/AlexWebsite/index.html",
-    "main.5b18cd4b.css.map": "/AlexWebsite/static/css/main.5b18cd4b.css.map",
-    "main.c3ec744c.js.map": "/AlexWebsite/static/js/main.c3ec744c.js.map",
+    "main.288d36b2.css.map": "/AlexWebsite/static/css/main.288d36b2.css.map",
+    "main.182a19c3.js.map": "/AlexWebsite/static/js/main.182a19c3.js.map",
     "488.af104311.chunk.js.map": "/AlexWebsite/static/js/488.af104311.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5b18cd4b.css",
-    "static/js/main.c3ec744c.js"
+    "static/css/main.288d36b2.css",
+    "static/js/main.182a19c3.js"
   ]
 }
