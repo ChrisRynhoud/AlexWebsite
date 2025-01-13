@@ -1,35 +1,668 @@
-/* Global styles */
-body {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+/* Global Reset */
+* {
   margin: 0;
   padding: 0;
-  background-color: #f0f0f0;
+  box-sizing: border-box;
+}
+
+/* Body and Global Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: white;
+  color: #5a6fa0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Keep content aligned to top */
+  min-height: 100vh;
+  overflow: hidden; /* Hide overflow to maintain clean transitions */
+  transition: background 0.5s ease;
+}
+
+.App {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header Styling */
+header {
+  background-color: rgba(240, 240, 240, 0.9); /* Light gray background with slight transparency */
   color: #333;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  position: fixed; /* Fix the header to the top */
+  top: 0;
+  left: 0;
+  height: 80px; /* Fixed height for the header */
+  z-index: 10; /* Ensure it stays above the page content */
 }
 
-h1, h2, h3, h4, h5, h6 {
+/* Header - Left Section */
+.header-left {
+  position: absolute;
+  left: 20px; /* Position the left section with some margin */
+  top: 50%;
+  transform: translateY(-50%); /* Center vertically */
+  text-align: left;
+  display: flex;
+  flex-direction: column; /* Align name and title vertically */
+  justify-content: center;
+}
+
+.header-left .header-name {
+  font-size: 1.6rem; /* Large text size for the name */
+  font-weight: bold;
   color: #333;
+  cursor: pointer;
+  margin-bottom: 5px; /* Space between name and title */
 }
 
-a {
-  color: #007bff;
-  text-decoration: none;
+.header-left .header-title {
+  font-size: 1rem; /* Smaller text size for the title */
+  font-weight: 300;
+  color: #888;
+  cursor: pointer;
 }
 
-a:hover {
-  text-decoration: underline;
+/* Page Container Styling */
+.page-container {
+  width: 100%;
+  height: 100%; /* Full height for the page container */
+  margin-top: 80px; /* Move the content below the fixed header */
+  overflow: hidden; /* Prevent content overflow during sliding */
 }
 
-button {
+/* Sliding Effect for Pages */
+.page-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 1.5s ease-out, opacity 1.5s ease-out;
+}
+
+/* Page Content Styling */
+.page-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+  box-sizing: border-box;
+  opacity: 1; /* Initially hidden */
+  /*animation: fadeIn 2s forwards; /* Apply fadeIn animation */
+}
+
+.page-content h1 {
+  margin: 30px 0;
+  font-size: 3rem;
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1.5px;
+  line-height: 1.3;
+}
+
+.page-content p {
+  margin: 10px 0;
+  color: #a0a0a0;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  max-width: 600px; /* Limiting the width for better readability */
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Hamburger Menu (for Mobile) */
+.hamburger-menu {
+  display: none; /* Hide by default */
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 20px; /* Move to the right side */
+  transform: translateY(-50%);
+  z-index: 100; /* Ensure it stays above other content */
+}
+
+.hamburger-menu .bar {
+  width: 30px; /* Width for bars matching desktop buttons */
+  height: 4px; /* Set height to be similar to button thickness */
+  background-color: #333; /* Set color to match desktop button color */
+  margin: 6px 0; /* Maintain equal spacing between bars */
+  border-radius: 4px; /* Rounded edges for a modern look */
+  transition: all 0.3s ease; /* Smooth transition for animations */
+}
+
+/* Hamburger Menu Animation when open (X shape) */
+.hamburger-menu.open .bar:nth-child(1) {
+  transform: translateY(10px) rotate(45deg); /* Top bar rotated to form X */
+}
+
+.hamburger-menu.open .bar:nth-child(2) {
+  opacity: 0; /* Hide middle bar */
+}
+
+.hamburger-menu.open .bar:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg); /* Bottom bar rotated to form X */
+}
+
+/* Mobile Navigation Menu (Hamburger Menu) */
+.nav-buttons {
+  display: none; /* Hide by default */
+  position: absolute;
+  top: 80px; /* Below the header */
+  right: 0;
+  background: rgba(240, 240, 240, 0.9); /* Light gray background similar to header */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%;
+  z-index: 5;
+  max-width: 350px; /* Limit the width of the menu */
+  border-radius: 0; /* Remove rounded corners */
+  transform: translateX(100%); /* Start off-screen */
+  transition: transform 0.5s ease-out; /* Smooth sliding effect */
+}
+
+/* Show mobile menu when it's open */
+.nav-buttons.open {
+  display: flex;
+  flex-direction: column;
+  transform: translateX(0); /* Slide into view */
+  animation: slideIn 0.5s ease-out; /* Slide-in animation */
+}
+
+/* Button Styling for Mobile Navigation (Matching Header Buttons) */
+.nav-buttons.open button {
+  display: block;
+  margin: 12px 0;
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 14px 18px;
+  background-color: transparent;
+  color: #555; /* Color matching header buttons */
+  font-weight: 300;
+  border: none; /* Removed the border */
+  border-radius: 0; /* Remove rounded corners */
+  transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+/* On Hover, Lighten the Button Text Like Desktop */
+.nav-buttons.open button:hover {
+  background-color: transparent;
+  color: #fff; /* Light up the text when hovered */
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Remove the background bubble on click */
+.nav-buttons.open button:active {
+  background-color: transparent; /* Remove the background bubble */
+  color: #fff; /* Light up the text */
+}
+
+/* Mobile Menu Animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%); /* Start from the right */
+  }
+  to {
+    transform: translateX(0); /* Slide to the right place */
+  }
+}
+
+/* Subtle Acceleration for Individual Elements */
+.animated-element {
+  animation: subtleAcceleration 1s ease-out forwards; /* Default to 1s */
+}
+
+.animated-element:nth-child(1) {
+  animation-duration: 1.5s; /* Slightly slower */
+  animation-delay: 0s; /* Start immediately */
+}
+
+.animated-element:nth-child(2) {
+  animation-duration: 1.2s; /* A bit slower */
+  animation-delay: 0.2s; /* Start after a short delay */
+}
+
+.animated-element:nth-child(3) {
+  animation-duration: 0.7s; /* Moderately fast */
+  animation-delay: 0.5s; /* Start after a longer delay */
+}
+
+.animated-element:nth-child(4) {
+  animation-duration: 1s; /* Slower */
+  animation-delay: 0.8s; /* Delay the start */
+}
+
+.animated-element:nth-child(5) {
+  animation-duration: 0.4s; /* Very fast */
+  animation-delay: 1.0s; /* Start later */
+}
+
+/* Keyframe Animation for Subtle Acceleration */
+@keyframes subtleAcceleration {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-3px); /* Slight upward movement */
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Jiggle Animation */
+@keyframes jiggle {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px); /* Reduced movement */
+  }
+  50% {
+    transform: translateX(2px); /* Reduced movement */
+  }
+  75% {
+    transform: translateX(-2px); /* Reduced movement */
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.jiggle {
+  animation: jiggle 0.3s ease-in-out; /* Reduced speed */
+}
+
+/* General Mobile Adjustments */
+@media (max-width: 768px) {
+  /* Homepage Grid and Image Styling */
+  .homepage-grid {
+    flex-direction: column; /* Stack the left and right sections vertically */
+    margin-top: 50px;
+  }
+
+  .homepage-image {
+    width: 100%;
+    max-width: 100%;
+    max-height: 40vh !important; /* Ensure image doesn't overflow */
+    object-fit: contain !important;
+  }
+
+  /* Navigation Adjustments */
+  .hamburger-menu {
+    display: block; /* Show hamburger menu */
+  }
+
+  .nav-desktop {
+    display: none; /* Hide desktop nav */
+  }
+
+  .nav-buttons.open {
+    display: flex; /* Show mobile menu when open */
+  }
+
+  .left-section, .right-section {
+    padding: 10px;
+  }
+
+  .top-right, .bottom-right {
+    text-align: left;
+  }
+
+  .bottom-right button {
+    padding: 8px 16px;
+  }
+}
+
+/* Adjustments for very small screens */
+@media (max-width: 480px) {
+  .homepage-image {
+    max-height: 35vh !important; /* Reduce image height on very small screens */
+    object-fit: contain !important;
+  }
+
+  .top-right h2, .bottom-right h3 {
+    font-size: 1.2rem; /* Adjust font sizes */
+  }
+
+  .bottom-right p {
+    font-size: 1rem;
+  }
+}
+
+/* Responsive Design for Desktop */
+@media (min-width: 769px) {
+  /* Hide Hamburger Menu on Desktop */
+  .hamburger-menu {
+    display: none;
+  }
+
+  /* Display Desktop Navigation */
+  .nav-desktop {
+    display: flex; /* Show desktop navigation */
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .nav-desktop button {
+    background-color: transparent;
+    color: #555;
+    border: none;
+    padding: 8px 18px;
+    margin: 0 10px;
+    font-size: 1rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .nav-desktop button:hover {
+    color: #fff;
+    background-color: transparent;
+  }
+
+  .nav-desktop button:focus {
+    outline: none;
+  }
+
+  /* Remove mobile menu when desktop mode */
+  .nav-buttons {
+    display: none;
+  }
+
+/* General styling for the homepage */
+.homepage-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+  margin-top: 80px; /* Adjust the margin to avoid overlapping with the header */
+}
+
+.left-section {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.right-section {
+  flex: 1;
+  padding: 20px;
+  color: #5a6fa0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.homepage-image {
+  width: 100%; /* Make the image take up 100% of its container width */
+  height: auto; /* Keep the aspect ratio intact */
+  max-width: 100%; /* Ensure the image never exceeds the container's width */
+  object-fit: contain; /* Ensure the image fits without cropping */
+  max-height: 70vh; /* Limit the height to 70% of the viewport height */
+  object-position: center; /* Center the image within its container */
+}
+
+/* Adjust text and button layout */
+.top-right {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.bottom-right {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.bottom-right button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.bottom-right button:hover {
+  background-color: #333;
+}
+
+
+
+/* Resume Page Specific Styles */
+.resume-page {
+  margin-top: 380px; /* Space for the header */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left; /* Ensure all text aligns to the left */
+}
+
+/* Top Row Layout (Image and Tidbit) */
+.resume-page .top-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 20px; /* Gap between the image and text block */
+  background-color: #d3d3d3; /* Soft gray background */
+  padding: 20px; /* Add some padding around the content */
+  border-radius: 10px; /* Optional: Round the corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow */
+}
+
+.resume-page .top-row .left {
+  background-color: transparent; /* No background */
+}
+
+.resume-page .top-row .right {
+  background-color: transparent; /* No background */
+}
+
+/* Bottom Row Layout (Three Tidbits on Left and Two on Right) */
+.resume-page .bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns for the bottom row */
+  gap: 20px;
+}
+
+/* Bottom Left (3 Tidbits) */
+.resume-page .bottom-left {
+  display: flex;
+  flex-direction: column; /* Stack tidbits vertically */
+  gap: 15px; /* Space between tidbits */
+}
+
+.resume-page .bottom-left .text-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  text-align: left; /* Align title to the left */
+}
+
+.resume-page .bottom-left .text-content {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+  text-align: left; /* Align content to the left */
+}
+
+/* Bottom Right (2 Tidbits) */
+.resume-page .bottom-right {
+  display: flex;
+  flex-direction: column; /* Stack tidbits vertically */
+  gap: 15px;
+}
+
+.resume-page .bottom-right .text-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  text-align: left; /* Align title to the left */
+}
+
+.resume-page .bottom-right .text-content {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+  text-align: left; /* Align content to the left */
+}
+
+/* Resume Image Styling */
+.resume-image {
+  width: 100%; /* Ensure it takes up full width */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 400px; /* Set a max width for the image */
+  max-height: 300px; /* Limit the height */
+  object-fit: contain;
+  margin-bottom: 20px; /* Space below the image */
+}
+
+/* Header Styles */
+.resume-page .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resume-page .header .top-left {
+  width: 70%; /* Image area */
+}
+
+.resume-page .header .top-right {
+  width: 30%; /* Text area */
+}
+
+
+
+html, body {
+  height: 100%; /* Ensure the body and html elements take up the full height of the screen */
+  margin: 0; /* Remove any default margin */
+  overflow-y: auto; /* Enable vertical scrolling for the whole page */
+}
+
+
+
+/* acting reel css styles */
+.acting-reel-page {
+  padding: 20px;
+  margin-top: 300px; /* Ensure enough space for header */
+}
+
+.video-actions {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  top: -10px; /* Adjust this value to move the buttons closer to the share button */
+  right: -850px;
+}
+
+.info-button, .share-button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.info-button:hover, .share-button:hover {
+  background-color: #218838;
+}
+
+.video-player-container {
+  position: relative;
+  margin-bottom: 20px; /* Add space below the video */
+}
+
+.video-player {
+  width: 100%;
+  height: 500px; /* Adjust size as needed */
+}
+
+.search-category-bar {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.search-bar {
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.category-dropdown {
+  padding: 10px;
+}
+
+.video-selection-bar {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.video-options-display {
+  display: flex;
+  gap: 10px;
+}
+
+.video-option {
+  cursor: pointer;
+  width: 120px;
+  text-align: center;
+}
+
+.video-option img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+
+.video-options {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.prev-button, .next-button {
+  padding: 10px;
+  margin: 0 5px;
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-button:hover {
+.prev-button:hover, .next-button:hover {
   background-color: #0056b3;
+}
+
+
+
+
+
+
+
 }
