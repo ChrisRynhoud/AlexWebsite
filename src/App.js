@@ -285,20 +285,41 @@ const handleExitShareOverlay = () => {
 };
 
 const handleFullScreenClick = () => {
-  // Fullscreen functionality
   const elem = document.getElementById("image-fullscreen");
+
   if (elem) {
-    if (elem.requestFullscreen) {
+    if (typeof elem.requestFullscreen === "function") {
       elem.requestFullscreen();
-    } else if (elem.mozRequestFullScreen) { // Firefox
-      elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) { // Chrome, Safari and Opera
+    } else if (typeof elem.webkitRequestFullscreen === "function") {
       elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { // IE/Edge
-      elem.msRequestFullscreen();
+    } else {
+      // Fallback for iOS Safari: Create a fullscreen-like overlay
+      const fullscreenOverlay = document.createElement("div");
+      fullscreenOverlay.id = "fullscreen-overlay";
+      fullscreenOverlay.style.position = "fixed";
+      fullscreenOverlay.style.top = "0";
+      fullscreenOverlay.style.left = "0";
+      fullscreenOverlay.style.width = "100vw";
+      fullscreenOverlay.style.height = "100vh";
+      fullscreenOverlay.style.background = "black";
+      fullscreenOverlay.style.zIndex = "1000";
+      fullscreenOverlay.style.display = "flex";
+      fullscreenOverlay.style.justifyContent = "center";
+      fullscreenOverlay.style.alignItems = "center";
+      fullscreenOverlay.onclick = () => document.body.removeChild(fullscreenOverlay);
+
+      const clonedElem = elem.cloneNode(true);
+      clonedElem.style.maxWidth = "100%";
+      clonedElem.style.maxHeight = "100%";
+      fullscreenOverlay.appendChild(clonedElem);
+
+      document.body.appendChild(fullscreenOverlay);
     }
+  } else {
+    console.error("Element with ID 'image-fullscreen' not found.");
   }
 };
+
 
 
 const handlePrevImage = () => {

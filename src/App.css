@@ -896,6 +896,7 @@ html, body {
 .gallery-page {
   text-align: center;
   margin: auto;
+  padding-top: 100px;
 }
 
 .gallery-grid {
