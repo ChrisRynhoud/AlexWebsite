@@ -51,26 +51,26 @@ import gallery4 from './content/gallery4.jpeg';  // Import gallery image
 const pageContent = {
   home: {
     imageUrl: homeImage, // Use the imported image
-    title1: "Welcome to My Homepage",
-    text1: "This is where you'll find information about me, my work, and my passions.",
-    title2: "About My Journey",
-    text2: "I’ve worked in various industries and here’s a brief look at my journey so far.",
-    reelButton: "Check out my Acting Reel"
+    title1: "Recent Performances",
+    text1: "Alex recently took the stage in the psychological thriller play, 'Dancing With Bliss'.",
+    title2: "Looking Ahead",
+    text2: "Alex is currently training with The Groundlings and aims to continue starring in upcoming shows.",
+    reelButton: "View Acting Reel"
   },
   resume: {
     imageUrl: resumeImage, // Example image
-    title1: "My Professional Journey",
-    text1: "An overview of my skills, work experience, and accomplishments.",
-    title2: "My Skills",
-    text2: "I am skilled in various areas, including acting, writing, and directing.",
-    title3: "Key Projects",
-    text3: "Here are some of the major projects I have worked on, showcasing my experience in diverse fields.",
-    title4: "Contact Information",
-    text4: "Feel free to reach out if you would like to collaborate! Email me at example@email.com or call me at (123) 456-7890.",
-    title5: "Awards & Recognition",
-    text5: "Throughout my career, I have been recognized with several prestigious awards for my work in film and theater.",
-    title6: "Education",
-    text6: "I hold a degree in Performing Arts from the University of XYZ, where I honed my skills and passion for creative expression."
+    title1: "Alex's Professional Journey",
+    text1: "Alex grew up in the SF Bay Area as a young boy addicted to television. His dreams have propelled him into Hollywood. | Height: 6'2  | Hair Color: Black |  Eye Color: Brown |  Location: Los Angeles, CA",
+    title2: "Movies",
+    text2: "1.) Davis Film Making Society - University Dogs - 2018 - Lead Actor | 2.) What Ah Nerd - 2018 - Lead Actor",
+    title3: "TV Shows",
+    text3: "1.) Anonymous Content and Paramount Television - 13 Reasons Why - 2017 - Featured Extra | 2.) Anonymous Content and Paramount Television - 13 Reasons Why - 2018 - Featured Extra",
+    title4: "Talents",
+    text4: "Alex has produced music since his youth and continues to excel at it today. He is also a renowned athlete having competed in several college rugby tournamnets.",
+    title5: "Theatre",
+    text5: "1.) Dancing With Bliss - 2023 - Lead Actor",
+    title6: "Training",
+    text6: "1.) UC Davis - Acting Classes - 2017 - Introductory Courses | 2.) The Groundlings - Acting Course - 2024 - Intermediate Courses"
   },
   actingReel: {
     title: "Acting Reel",
@@ -78,33 +78,33 @@ const pageContent = {
     imageUrl: "https://via.placeholder.com/500", // Placeholder for image
     additionalText: "This reel features a selection of my best performances across various roles.",
     videoOptions: [
-      { id: 1, title: "Reel 1", thumbnail: thumb1, videoUrl: video1, category: "film" },
-      { id: 2, title: "Reel 2", thumbnail: thumb2, videoUrl: video2, category: "tv" },
-      { id: 3, title: "Reel 3", thumbnail: thumb3, videoUrl: video3, category: "theatre" },
-      { id: 4, title: "Reel 4", thumbnail: thumb4, videoUrl: video4, category: "film" },
-      { id: 5, title: "Reel 5", thumbnail: thumb5, videoUrl: video5, category: "tv" },
-      { id: 6, title: "Reel 6", thumbnail: thumb6, videoUrl: video6, category: "theatre" },
-      { id: 7, title: "Reel 7", thumbnail: thumb7, videoUrl: video7, category: "film" },
-      { id: 8, title: "Reel 8", thumbnail: thumb8, videoUrl: video8, category: "tv" },
-      { id: 9, title: "Reel 9", thumbnail: thumb9, videoUrl: video9, category: "theatre" },
-      { id: 10, title: "Reel 10", thumbnail: thumb10, videoUrl: video10, category: "film" },
-      { id: 11, title: "Reel 11", thumbnail: thumb11, videoUrl: video11, category: "tv" },
-      { id: 12, title: "Reel 12", thumbnail: thumb12, videoUrl: video12, category: "theatre" },
+      { id: 1, title: "Office Politics", thumbnail: thumb1, videoUrl: video1, category: "film" },
+      { id: 2, title: "Romantic Confession", thumbnail: thumb2, videoUrl: video2, category: "tv" },
+      { id: 3, title: "The Detective's Interrogation", thumbnail: thumb3, videoUrl: video3, category: "theatre" },
+      { id: 4, title: "Lighthearted Banter", thumbnail: thumb4, videoUrl: video4, category: "film" },
+      { id: 5, title: "A Hero’s Sacrifice", thumbnail: thumb5, videoUrl: video5, category: "tv" },
+      { id: 6, title: "The Misfit's Speech", thumbnail: thumb6, videoUrl: video6, category: "theatre" },
+      { id: 7, title: "Mystery Encounter", thumbnail: thumb7, videoUrl: video7, category: "film" },
+      { id: 8, title: "The Villain's Confession", thumbnail: thumb8, videoUrl: video8, category: "tv" },
+      { id: 9, title: "First Date Awkwardness", thumbnail: thumb9, videoUrl: video9, category: "theatre" },
+      { id: 10, title: "Battle of Wits", thumbnail: thumb10, videoUrl: video10, category: "film" },
+      { id: 11, title: "The Breakup", thumbnail: thumb11, videoUrl: video11, category: "tv" },
+      { id: 12, title: "Beach Bonanza", thumbnail: thumb12, videoUrl: video12, category: "theatre" },
     ]
   },
   gallery: {
     images: [
-      { id: 1, src: gallery1, title: "Image 1", description: "Description of image 1" },
-      { id: 2, src: gallery2, title: "Image 2", description: "Description of image 2" },
-      { id: 3, src: gallery3, title: "Image 3", description: "Description of image 3" },
-      { id: 4, src: gallery4, title: "Image 4", description: "Description of image 4" },
+      { id: 1, src: gallery1, title: "Confident Professional", description: "This look highlights Alex's ability to portray polished and self-assured characters, ideal for corporate or leadership roles." },
+      { id: 2, src: gallery2, title: "Dynamic Performer", description: "Captures an intense and focused expression, perfect for dramatic or high-stakes characters." },
+      { id: 3, src: gallery3, title: "Rugged Hero", description: "Demonstrates Alex's ability to embody strong, dependable, and adventurous characters." },
+      { id: 4, src: gallery4, title: "Creative Visionary", description: "A quirky and unique look that emphasizes Alex's ability to portray artistic and unconventional characters." },
     ]
   },
   contact: {
-    title: "Contact Me",
-    text: "Get in touch with me for collaborations or inquiries.",
+    title: "Management",
+    text: "Alex Rynhoud - Free Agent | 123-456-7890 info@gmail.com | 100 Terryfold Lane, Los Angeles, CA 90210",
     imageUrl: "https://via.placeholder.com/500",
-    additionalText: "I am always open to new opportunities. Reach out via email or social media!"
+    additionalText: ""
   }
 };
 
@@ -370,8 +370,8 @@ const renderInfoModal = () => (
     <div className="info-modal">
       <button className="close-btn" onClick={handleCloseInfo}>X</button>
       <img src={infoImage} alt="Info" className="info-modal-image" />
-      <h2>Info Title</h2>
-      <p>This is an acting reel page featuring highlights from various performances across film, TV, and theatre.</p>
+      <h2>Alex's Reel</h2>
+      <p>This is an acting reel page featuring highlights from Alex's various performances across film, TV, and theatre.</p>
     </div>
   
 );
@@ -714,8 +714,8 @@ const renderPageContent = (index) => {
         <div className="info-modal">
           <button className="close-btn" onClick={handleCloseInfo}>X</button>
           <img src={infoImage} alt="Info" className="info-modal-image" />
-          <h2>Info Title</h2>
-          <p>This is an acting reel page featuring highlights from various performances across film, TV, and theatre.</p>
+          <h2>Alex's Reels</h2>
+          <p>This page showcases highlights from Alex's various performances across film, TV, and theatre.</p>
         </div>
       )}
 
