@@ -2,6 +2,50 @@ import React, { useState, useRef } from 'react';
 import './App.css';
 import homeImage from './content/home-image.jpg'; // Import home image
 import resumeImage from './content/resume-image.jpg'; // Import resume image
+import thumb1 from './content/thumb1.jpg'; // Import thumbnail image
+import thumb2 from './content/thumb2.jpg'; // Import thumbnail image
+import thumb3 from './content/thumb3.jpg'; // Import thumbnail image
+import thumb4 from './content/thumb4.jpg'; // Import thumbnail image
+import thumb5 from './content/thumb5.jpg'; // Import thumbnail image
+import thumb6 from './content/thumb6.jpg'; // Import thumbnail image
+import thumb7 from './content/thumb7.jpg'; // Import thumbnail image
+import thumb8 from './content/thumb8.jpg'; // Import thumbnail image
+import thumb9 from './content/thumb9.jpg'; // Import thumbnail image
+import thumb10 from './content/thumb10.jpg'; // Import thumbnail image
+import thumb11 from './content/thumb11.jpg'; // Import thumbnail image
+import thumb12 from './content/thumb12.jpg'; // Import thumbnail image
+import video1 from './content/video1.mp4'; // Import reel video
+import video2 from './content/video2.mp4'; // Import reel video
+import video3 from './content/video3.mp4'; // Import reel video
+import video4 from './content/video4.mp4'; // Import reel video
+import video5 from './content/video5.mp4'; // Import reel video
+import video6 from './content/video6.mp4'; // Import reel video
+import video7 from './content/video7.mp4'; // Import reel video
+import video8 from './content/video8.mp4'; // Import reel video
+import video9 from './content/video9.mp4'; // Import reel video
+import video10 from './content/video10.mp4'; // Import reel video
+import video11 from './content/video11.mp4'; // Import reel video
+import video12 from './content/video12.mp4'; // Import reel video
+
+import fbImage from './content/fbImage.png'; // Import facebook image
+import twitterImage from './content/twitterImage.png'; // Import twitter image
+import igImage from './content/igImage.png'; // Import instagram image
+import chainImage from './content/chainImage.png'; // Import chain image
+import closeImage from './content/closeImage.png'; // Import chain image
+
+import infoImage from './content/info-image.jpeg'; // Import info image
+
+import infoButtonImage from './content/info-button-image.png'; // Import info button image
+import shareButtonImage from './content/share-button-image.png'; // Import share button image
+
+import fullscreenImage from './content/fullscreen-image.png';  // Change the path if needed
+
+import gallery1 from './content/gallery1.jpeg';  // Import gallery image
+import gallery2 from './content/gallery2.jpeg';  // Import gallery image
+import gallery3 from './content/gallery3.jpg';  // Import gallery image
+import gallery4 from './content/gallery4.jpeg';  // Import gallery image
+
+
 
 // Placeholder content for each page
 const pageContent = {
@@ -34,17 +78,27 @@ const pageContent = {
     imageUrl: "https://via.placeholder.com/500", // Placeholder for image
     additionalText: "This reel features a selection of my best performances across various roles.",
     videoOptions: [
-      { id: 1, title: "Reel 1", thumbnail: "thumb1.jpg", videoUrl: "video1.mp4" },
-      { id: 2, title: "Reel 2", thumbnail: "thumb2.jpg", videoUrl: "video2.mp4" },
-      { id: 3, title: "Reel 3", thumbnail: "thumb3.jpg", videoUrl: "video3.mp4" }
-      // Add more video options as needed
+      { id: 1, title: "Reel 1", thumbnail: thumb1, videoUrl: video1, category: "film" },
+      { id: 2, title: "Reel 2", thumbnail: thumb2, videoUrl: video2, category: "tv" },
+      { id: 3, title: "Reel 3", thumbnail: thumb3, videoUrl: video3, category: "theatre" },
+      { id: 4, title: "Reel 4", thumbnail: thumb4, videoUrl: video4, category: "film" },
+      { id: 5, title: "Reel 5", thumbnail: thumb5, videoUrl: video5, category: "tv" },
+      { id: 6, title: "Reel 6", thumbnail: thumb6, videoUrl: video6, category: "theatre" },
+      { id: 7, title: "Reel 7", thumbnail: thumb7, videoUrl: video7, category: "film" },
+      { id: 8, title: "Reel 8", thumbnail: thumb8, videoUrl: video8, category: "tv" },
+      { id: 9, title: "Reel 9", thumbnail: thumb9, videoUrl: video9, category: "theatre" },
+      { id: 10, title: "Reel 10", thumbnail: thumb10, videoUrl: video10, category: "film" },
+      { id: 11, title: "Reel 11", thumbnail: thumb11, videoUrl: video11, category: "tv" },
+      { id: 12, title: "Reel 12", thumbnail: thumb12, videoUrl: video12, category: "theatre" },
     ]
   },
   gallery: {
-    title: "Gallery",
-    text: "Explore my photo gallery showcasing various moments from my career.",
-    imageUrl: "https://via.placeholder.com/500",
-    additionalText: "This gallery is a visual collection of my best moments and professional shoots."
+    images: [
+      { id: 1, src: gallery1, title: "Image 1", description: "Description of image 1" },
+      { id: 2, src: gallery2, title: "Image 2", description: "Description of image 2" },
+      { id: 3, src: gallery3, title: "Image 3", description: "Description of image 3" },
+      { id: 4, src: gallery4, title: "Image 4", description: "Description of image 4" },
+    ]
   },
   contact: {
     title: "Contact Me",
@@ -61,10 +115,31 @@ const App = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const incomingIndexRef = useRef(currentIndex);
   const [menuOpen, setMenuOpen] = useState(false);
+
+   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedVideo, setSelectedVideo] = useState(pageContent.actingReel.videoOptions[0]);
+
+  const [currentReelIndex, setCurrentReelIndex] = useState(0);
+
+  const [isShareOverlayOpen, setIsShareOverlayOpen] = useState(false);
+const [isInfoOpen, setIsInfoOpen] = useState(false);
+
+const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+
+const [isImageOverlayOpen, setIsImageOverlayOpen] = useState(false);
+const [selectedImage, setSelectedImage] = useState(null);
+
+const [isShareOverlayVisible, setIsShareOverlayVisible] = useState(false);
+
 
   const stepSize = 2;
   const animationDuration = 2000;
+  const reelsPerPage = 3;
+  const maxReels = 12
+
+
+
 
   const moveTextAndImages = () => {
   if (isAnimating) return;
@@ -124,21 +199,171 @@ const App = () => {
     }
   };
 
+
+  // Handle search query input
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  // Handle category selection
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
+  // Filter video options based on search query and category
+  const filteredVideos = pageContent.actingReel.videoOptions.filter((video) => {
+    const matchesSearch = video.title.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = selectedCategory === "all" || video.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
   const handleVideoSelection = (video) => {
+    console.log("Selected video:", video);  // Add this line to check the selected video
     setSelectedVideo(video);
   };
 
   const handleNextVideo = () => {
-    const currentIndex = pageContent.actingReel.videoOptions.indexOf(selectedVideo);
-    const nextIndex = (currentIndex + 1) % pageContent.actingReel.videoOptions.length;
-    setSelectedVideo(pageContent.actingReel.videoOptions[nextIndex]);
+    if (currentReelIndex + reelsPerPage < maxReels) {
+      setCurrentReelIndex((prevIndex) => prevIndex + reelsPerPage);
+    }
   };
 
   const handlePrevVideo = () => {
-    const currentIndex = pageContent.actingReel.videoOptions.indexOf(selectedVideo);
-    const prevIndex = (currentIndex - 1 + pageContent.actingReel.videoOptions.length) % pageContent.actingReel.videoOptions.length;
-    setSelectedVideo(pageContent.actingReel.videoOptions[prevIndex]);
+    if (currentReelIndex - reelsPerPage >= 0) {
+      setCurrentReelIndex((prevIndex) => prevIndex - reelsPerPage);
+    }
   };
+
+
+const handleShareClick = () => {
+  setIsShareOverlayOpen(true);  // Open the share overlay
+  //setIsOverlayVisible(true);   // Show the darkening overlay
+};
+
+const handleCloseShareOverlay = () => {
+  setIsShareOverlayOpen(false); // Close the share overlay
+  //setIsOverlayVisible(false);   // Hide the darkening overlay
+};
+
+const handleInfoClick = () => {
+  setIsInfoOpen(true);  // Open the info modal
+  setIsOverlayVisible(true);   // Show the darkening overlay
+};
+
+const handleCloseInfo = () => {
+  setIsInfoOpen(false); // Close the info modal
+  setIsOverlayVisible(false);   // Hide the darkening overlay
+};
+
+const handleOverlayToggle = () => {
+  setIsOverlayVisible(!isOverlayVisible);
+};
+
+
+
+const handleImageClick = (image) => {
+  setSelectedImage(image);
+  setIsImageOverlayOpen(true);
+};
+
+
+const handleCloseImageOverlay = () => {
+  setIsImageOverlayOpen(false);
+  setSelectedImage(null);
+};
+
+const handleShareImageClick = () => {
+  // Implement share functionality here
+};
+
+const handleOpenShareOverlay = () => {
+  setIsShareOverlayVisible(true);
+};
+
+const handleExitShareOverlay = () => {
+  setIsShareOverlayVisible(false);
+};
+
+const handleFullScreenClick = () => {
+  // Fullscreen functionality
+  const elem = document.getElementById("image-fullscreen");
+  if (elem) {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) { // Firefox
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) { // Chrome, Safari and Opera
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { // IE/Edge
+      elem.msRequestFullscreen();
+    }
+  }
+};
+
+
+const handlePrevImage = () => {
+  const currentIndex = pageContent.gallery.images.findIndex(image => image.id === selectedImage.id);
+  const prevIndex = currentIndex === 0 ? pageContent.gallery.images.length - 1 : currentIndex - 1;
+  setSelectedImage(pageContent.gallery.images[prevIndex]);
+};
+
+const handleNextImage = () => {
+  const currentIndex = pageContent.gallery.images.findIndex(image => image.id === selectedImage.id);
+  const nextIndex = currentIndex === pageContent.gallery.images.length - 1 ? 0 : currentIndex + 1;
+  setSelectedImage(pageContent.gallery.images[nextIndex]);
+};
+
+
+
+
+
+
+
+const renderShareOverlay = () => (
+  <div className="share-overlay">
+    <div className="share-overlay-content">
+      <button className="close-btn" onClick={() => { handleExitShareOverlay(); handleCloseShareOverlay(); }}>X</button>
+
+      <h2 className="share-title">Share</h2>
+      <div className="share-buttons">
+        <button onClick={() => window.open('https://www.facebook.com/sharer/sharer.php?u=' + window.location.href)}>
+          <img src={fbImage} alt="Facebook" />
+        </button>
+        <button onClick={() => window.open('https://twitter.com/intent/tweet?url=' + window.location.href)}>
+          <img src={twitterImage} alt="Twitter" />
+        </button>
+        <button onClick={() => window.open('https://www.instagram.com')}>
+          <img src={igImage} alt="Instagram" />
+        </button>
+        <button onClick={() => navigator.clipboard.writeText(window.location.href)}>
+          <img src={chainImage} alt="Copy Link" />
+        </button>
+      </div>
+    </div>
+  </div>
+);
+
+
+const renderInfoModal = () => (
+  
+    <div className="info-modal">
+      <button className="close-btn" onClick={handleCloseInfo}>X</button>
+      <img src={infoImage} alt="Info" className="info-modal-image" />
+      <h2>Info Title</h2>
+      <p>This is an acting reel page featuring highlights from various performances across film, TV, and theatre.</p>
+    </div>
+  
+);
+
+
+
+
+
+
+
+
+
+
 
   const renderHomePageContent = () => {
     const content = pageContent.home;
@@ -202,46 +427,175 @@ const renderActingReelPageContent = () => {
   const content = pageContent.actingReel;
 
   return (
-    <div className="acting-reel-page">
-      {/* Information and Share Buttons - positioned on the top right */}
-      <div className="video-actions">
-        <button className="info-button">Info</button>
-        <button className="share-button">Share</button>
-      </div>
+<div className="acting-reel-page"> {/* Wrapper div */}
+  {/* Information and Share Buttons - positioned on the top right */}
+  <div className="video-actions">
+    <button className="action-button" onClick={handleShareClick}>
+      <img src={shareButtonImage} alt="Share" />
+    </button>
+    <button className="action-button" onClick={handleInfoClick}>
+      <img src={infoButtonImage} alt="Info" />
+    </button>
+  </div>
 
-      <div className="video-player-container">
-        <video className="video-player" controls>
-          <source src={selectedVideo.videoUrl} type="video/mp4" />
-        </video>
-      </div>
+  {isShareOverlayOpen && renderShareOverlay()}
+ 
 
-      <div className="search-category-bar">
-        <input type="text" className="search-bar" placeholder="Search videos..." />
-        <select className="category-dropdown">
-          <option value="all">All Categories</option>
-          <option value="film">Film</option>
-          <option value="tv">TV</option>
-        </select>
-      </div>
+  {/* Video Player */}
+  <div className="video-player-container">
+    <video className="video-player" controls key={selectedVideo.id}>
+      <source src={selectedVideo.videoUrl} type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <div className={`video-overlay ${isShareOverlayOpen ? "visible" : ""}`}></div>
+  </div>
+  <small>Videos created using Clipchamp. Stock assets licensed through Clipchamp.</small>
 
-      <div className="video-selection-bar">
-        <div className="video-options-display">
-          {content.videoOptions.map((video) => (
-            <div key={video.id} className="video-option" onClick={() => handleVideoSelection(video)}>
-              <img src={video.thumbnail} alt={video.title} />
-              <p>{video.title}</p>
-            </div>
-          ))}
+
+  {/* Search Category Bar */}
+  <div className="search-category-bar">
+    <input
+      type="text"
+      className="search-bar"
+      placeholder="Search videos..."
+      value={searchQuery}
+      onChange={handleSearchChange}
+    />
+    <select className="category-dropdown" value={selectedCategory} onChange={handleCategoryChange}>
+      <option value="all">All Categories</option>
+      <option value="film">Film</option>
+      <option value="tv">TV</option>
+      <option value="theatre">Theatre</option>
+    </select>
+  </div>
+
+{/* Video Selection */}
+<div className="video-selection-bar">
+  {/* Video Thumbnails */}
+  <div className="video-thumbnails">
+    {filteredVideos
+      .slice(currentReelIndex, currentReelIndex + reelsPerPage)
+      .map((video) => (
+        <div
+          key={video.id}
+          className={`video-thumbnail ${selectedVideo.id === video.id ? "selected" : ""}`}
+          onClick={() => handleVideoSelection(video)}
+        >
+          <img src={video.thumbnail} alt={video.title} />
+          <p className="title">{video.title}</p>
         </div>
+      ))}
+  </div>
+
+  {/* Select Navigation Buttons */}
+  <div className="select-nav-buttons">
+    <button
+      className="prev-button"
+      onClick={handlePrevVideo}
+      disabled={currentReelIndex === 0}
+    >
+      Previous
+    </button>
+    <button
+      className="next-button"
+      onClick={handleNextVideo}
+      disabled={currentReelIndex + reelsPerPage >= filteredVideos.length}
+    >
+      Next
+    </button>
+  </div>
+</div>
+
+
+
+
+
+{/* End of the parent wrapper */}
+</div>
+
+  );
+};
+
+
+
+
+
+
+
+
+
+
+
+
+const renderGalleryPageContent = () => {
+  const content = pageContent.gallery;
+
+  return (
+    <div className="gallery-page">
+      <h1>{content.title}</h1>
+      <p>{content.text}</p>
+      <div className="gallery-grid">
+        {content.images.map((image) => (
+          <div className="gallery-item" key={image.id}>
+            <img
+              src={image.src}
+              alt={image.title}
+              className="gallery-thumbnail"
+              onClick={() => handleImageClick(image)}
+            />
+            <div className="overlay">
+              <h3>{image.title}</h3>
+              <p>{image.description}</p>
+            </div>
+          </div>
+        ))}
       </div>
 
-      <div className="video-options">
-        <button className="prev-button" onClick={handlePrevVideo}>Prev</button>
-        <button className="next-button" onClick={handleNextVideo}>Next</button>
+
+    </div>
+  );
+};
+
+
+
+
+
+
+
+const renderContactPageContent = () => {
+  const content = pageContent.contact; // Assuming you have a contact content object like your homepage one.
+
+  return (
+    <div className="contact-page-grid">
+      <div className="left-section">
+        <h2>{content.title}</h2>
+        <p>{content.text}</p>
+      </div>
+      <div className="right-section">
+        <form>
+          <div className="input-slot">
+            
+            <input type="text" id="name" placeholder="Your Name" />
+          </div>
+          <div className="input-slot">
+            
+            <input type="email" id="email" placeholder="Your Email" />
+          </div>
+          <div className="input-slot">
+            
+            <input type="text" id="subject" placeholder="Subject" />
+          </div>
+          <div className="input-slot">
+            
+            <textarea id="message" placeholder="Your Message"></textarea>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
       </div>
     </div>
   );
 };
+
 
 
 
@@ -254,6 +608,10 @@ const renderPageContent = (index) => {
     return renderResumePageContent(); // Render resume if index is 1
   } else if (index === 2) {
     return renderActingReelPageContent(); // Render acting reel if index is 2
+  } else if (index === 3) {
+    return renderGalleryPageContent(); // Render gallery page
+  } else if (index === 4) {
+    return renderContactPageContent(); // Render contact page
   }
 
   const pageKey = Object.keys(pageContent)[index];
@@ -280,6 +638,68 @@ const renderPageContent = (index) => {
 
  return (
     <div className="App">
+
+
+    {/* Share Overlay for Image Overlay */}
+    {isShareOverlayVisible && renderShareOverlay()}
+
+
+    {/* Image Overlay */}
+    {isImageOverlayOpen && (
+      <div className="image-overlay">
+        <div className="overlay-content">
+          <button className="close-btn" onClick={handleCloseImageOverlay}>X</button>
+          <button className="share-btn" onClick={handleOpenShareOverlay}>
+  <img src={shareButtonImage} alt="Share" />
+</button>
+            <button className="fullscreen-btn" onClick={handleFullScreenClick}>
+  <img src={fullscreenImage} alt="Fullscreen" />
+</button>
+
+            {/* Left Arrow */}
+      <button className="nav-arrow left" onClick={handlePrevImage}>←</button>
+
+
+
+          <img
+            id="image-fullscreen"
+            src={selectedImage.src}
+            alt={selectedImage.title}
+            className="overlay-image"
+          />
+
+           {/* Right Arrow */}
+      <button className="nav-arrow right" onClick={handleNextImage}>→</button>
+
+          <div className="image-details">
+            <h2>{selectedImage.title}</h2>
+            <p>{selectedImage.description}</p>
+            
+          </div>
+        </div>
+      </div>
+    )}
+
+
+      {/* Full-Screen Overlay */}
+      {isOverlayVisible && (
+        <div className="info-overlay">
+          {/* Dark overlay to cover everything */}
+        </div>
+      )}
+
+      {/* Info Modal */}
+      {isInfoOpen && (
+        <div className="info-modal">
+          <button className="close-btn" onClick={handleCloseInfo}>X</button>
+          <img src={infoImage} alt="Info" className="info-modal-image" />
+          <h2>Info Title</h2>
+          <p>This is an acting reel page featuring highlights from various performances across film, TV, and theatre.</p>
+        </div>
+      )}
+
+
+
       <header>
         <div className="header-left">
           <span onClick={() => handleButtonClick(0)} className="header-name">Alex Rynhoud</span>
