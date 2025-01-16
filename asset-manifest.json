@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/AlexWebsite/static/css/main.2dde537d.css",
-    "main.js": "/AlexWebsite/static/js/main.61ca4e54.js",
+    "main.css": "/AlexWebsite/static/css/main.a3f4d743.css",
+    "main.js": "/AlexWebsite/static/js/main.6266f52a.js",
     "static/js/488.af104311.chunk.js": "/AlexWebsite/static/js/488.af104311.chunk.js",
     "static/media/video6.mp4": "/AlexWebsite/static/media/video6.87e011f549189e2aec8a.mp4",
     "static/media/video10.mp4": "/AlexWebsite/static/media/video10.3f933890cab28ec2faa0.mp4",
@@ -37,12 +37,12 @@
     "static/media/thumb9.jpg": "/AlexWebsite/static/media/thumb9.daef13d744c4af945be9.jpg",
     "static/media/igImage.png": "/AlexWebsite/static/media/igImage.a39c398072ec354dc98c.png",
     "index.html": "/AlexWebsite/index.html",
-    "main.2dde537d.css.map": "/AlexWebsite/static/css/main.2dde537d.css.map",
-    "main.61ca4e54.js.map": "/AlexWebsite/static/js/main.61ca4e54.js.map",
+    "main.a3f4d743.css.map": "/AlexWebsite/static/css/main.a3f4d743.css.map",
+    "main.6266f52a.js.map": "/AlexWebsite/static/js/main.6266f52a.js.map",
     "488.af104311.chunk.js.map": "/AlexWebsite/static/js/488.af104311.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2dde537d.css",
-    "static/js/main.61ca4e54.js"
+    "static/css/main.a3f4d743.css",
+    "static/js/main.6266f52a.js"
   ]
 }
